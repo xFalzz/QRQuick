@@ -232,16 +232,14 @@ export default function UrlShortenerCards({ className }) {
                         setTrackingData([]);
                     }
                 } else {
-                    // If no shortCode provided (e.g. manual refresh?), maybe clean up or show nothing?
-                    // For now, let's keep it empty to enforce scanning.
                     setTrackingData([]);
                 }
             } else {
-                setError('Failed to fetch tracking data');
+                setError('Failed to fetch data. Please check Database connection in Vercel.');
                 setTrackingData([]);
             }
         } catch (err) {
-            setError('Error fetching tracking data');
+            setError('Error fetching tracking data. Database might be disconnected.');
             setTrackingData([]);
         } finally {
             setIsLoading(false);
@@ -416,23 +414,28 @@ export default function UrlShortenerCards({ className }) {
                     
                     if (code) {
                         console.log("Found QR code", code.data);
-                        
-                        // Validate Domain
-                        const origin = window.location.origin;
-                        if (code.data.startsWith(origin)) {
-                            // Extract Short Code
-                            // URL format: origin/shortCode
-                            const shortCode = code.data.replace(origin + '/', '');
+                        // Validate Domain (Relaxed Check)
+                        const allowedDomains = [window.location.origin, "https://qrquicks.vercel.app", "http://localhost:3000", "https://qrquick.com"];
+                        const isValidDomain = allowedDomains.some(d => code.data.startsWith(d));
+
+                        if (isValidDomain) {
+                            // Extract short code
+                            const parts = code.data.split('/');
+                            const shortCode = parts[parts.length - 1];
                             
-                            // Fetch Stats for this code
-                            fetchTrackingData(shortCode);
+                            if (shortCode) {
+                                fetchTrackingData(shortCode);
+                            } else {
+                                setError('Invalid QR Code format.');
+                                setTrackingData([]);
+                            }
                         } else {
-                            setError('This QR Code is not from QRQuick (domain mismatch). Tracking is only available for QRQuick links.');
-                            setIsLoading(false);
+                            setError('QR Code is not from this website (Domain mismatch).');
+                            setTrackingData([]);
                         }
                     } else {
-                        setError('Could not decode QR Code. Please ensure the image is clear.');
-                        setIsLoading(false);
+                        setError('Could not decode QR code. Please ensure image is clear.');
+                        setTrackingData([]);
                     }
                 };
             };
