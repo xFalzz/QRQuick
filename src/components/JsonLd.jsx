@@ -10,7 +10,9 @@ export default function JsonLd() {
             "price": "0",
             "priceCurrency": "USD"
         },
-        "description": "Create custom QR Codes for URLs, WiFi, PDF, and more. Free, secure, and easy to use."
+        "description": "Create custom QR Codes for URLs, WiFi, PDF, and more. Free, secure, and easy to use.",
+        "url": "https://qrquicks.vercel.app/",
+        "image": "https://qrquicks.vercel.app/favicon/QRQuick%20grey%20512.png"
     };
 
     return (

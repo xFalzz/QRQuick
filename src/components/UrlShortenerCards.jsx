@@ -29,7 +29,7 @@ export default function UrlShortenerCards({ className }) {
         const qr = new QRCodeStyling({
             width: 200,
             height: 200,
-            data: "https://qrquick.com",
+            data: "https://qrquicks.vercel.app/",
             image: "/favicon/QRQuick%20grey%20512.png",
             dotsOptions: { color: "#000000", type: "square" },
             imageOptions: { crossOrigin: "anonymous", margin: 5 },
@@ -454,7 +454,7 @@ export default function UrlShortenerCards({ className }) {
     useEffect(() => {
         if (!qrCode) return;
         qrCode.update({
-            data: qrCodeValue || "https://qrquick.com",
+            data: qrCodeValue || "https://qrquicks.vercel.app/",
             dotsOptions: { color: design.color, type: design.dotType },
             backgroundOptions: { color: design.bgColor },
             cornersSquareOptions: { color: design.cornerColor, type: design.cornerType },

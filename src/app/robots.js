@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: '/private/',
         },
-        sitemap: 'https://qrquick.com/sitemap.xml',
+        sitemap: 'https://qrquicks.vercel.app/sitemap.xml',
     }
 }

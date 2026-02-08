@@ -4,7 +4,7 @@ import "./globals.css";
 const darkerGrotesque = Darker_Grotesque({ subsets: ["latin"] });
 
 export const metadata = {
-    metadataBase: new URL("https://qrquick.com"),
+    metadataBase: new URL("https://qrquicks.vercel.app"),
     title: {
         default: "QRQuick | Create Free QR Codes & Short Links",
         template: "%s | QRQuick"
@@ -20,7 +20,7 @@ export const metadata = {
     openGraph: {
         title: "QRQuick | Create Your Free QR Codes",
         description: "Easily create QR Codes with any types, share them anywhere. Track your links with our built-in URL shortener.",
-        url: "https://qrquick.com",
+        url: "https://qrquicks.vercel.app",
         siteName: "QRQuick",
         images: [
             {
